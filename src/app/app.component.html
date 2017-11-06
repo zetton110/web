@@ -8,11 +8,15 @@
 <hr>
 <modal-entry></modal-entry>
 <div class="app">
-  <span>① モーダルダイアログ実装サンプル</span>
-  <button (click)="openModal()">開く</button>
+  <span>① ログイン用モーダルダイアログ実装サンプル</span>
+  <button (click)="openLoginModal()">開く</button>
   <div *ngIf="isLogined">
     <p>id: {{ name }}</p>
     <p>pass: {{ password }}</p>
   </div>
 </div>
 <hr>
+<div class="app">
+  <span>② 確認用モーダルダイアログ実装サンプル</span>
+  <button (click)="openConfirmModal()">開く</button>
+</div>

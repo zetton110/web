@@ -1,0 +1,22 @@
+    input {
+      padding: 2px 5px;
+    }
+    footer {
+      margin-top: 10px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #ddd;
+      border: 0;
+      border-radius: 3px;
+      margin-right: 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+    button.ok {
+      background-color: #009688;
+      color: #fff;
+    }

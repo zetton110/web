@@ -1,4 +1,4 @@
-import { Component , Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { ModalContextService } from "./modal-context.service";
 
 @Component({
@@ -35,6 +35,7 @@ import { ModalContextService } from "./modal-context.service";
       <p class="closeBtn" (click)="cancel()">x</p>
     </header>
     <div class="body">
+      <p *ngIf="isContainDescription">{{ description }}</p>
       <ng-content></ng-content>
     </div>
   `
@@ -43,8 +44,14 @@ export class ModalContainerComponent {
   constructor(
     private modalContext: ModalContextService
   ) {
+    if (this.modalContext.description != undefined) {
+      this.isContainDescription = true;
+      this.description = this.modalContext.description;
+    }
   }
   @Input() private title: string;
+  description: string;
+  isContainDescription: boolean = false;
 
   cancel() {
     this.modalContext.reject();

@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalContextService } from "../modal/modal-context.service";
+import { ModalContextService } from "../../modal/modal-context.service";
 import { User } from './user.model';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  selector: 'app-modal-login',
+  templateUrl: './modal-login.component.html',
+  styleUrls: ['./modal-login.component.css']
 })
-export class ModalComponent implements OnInit {
+export class ModalLoginComponent implements OnInit {
 
   private name: string;
   private password: string;
