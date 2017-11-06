@@ -1,0 +1,22 @@
+    .app {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #009688;
+      color: #fff;
+      border: 0;
+      border-radius: 3px;
+      margin-right: 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.8;
+    }

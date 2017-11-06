@@ -1,0 +1,12 @@
+    <modal-container title="ログインフォーム">
+      <section>
+        <input [(ngModel)]="name" placeholder="name">
+      </section>
+      <section>
+        <input type="password" [(ngModel)]="password" placeholder="password">
+      </section>
+      <footer>
+        <button class="ok" (click)="onClick()">Login</button>
+        <button (click)="modal.reject()">Cancel</button>
+      </footer>
+    </modal-container>
