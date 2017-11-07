@@ -18,16 +18,29 @@ export class ModalService {
   ) {
   }
 
+  /**
+ *　モーダルダイアログ表示フラグ
+ * @return {boolean} true/false モーダルダイアログの表示
+ */
   isShow() {
     return this.count > 0;
   }
 
+  /**
+ *　モーダルダイアログ表示処理開始
+ *  
+ * @return {Promise<T>} true/false モーダルダイアログの表示
+ */
   open<T>(comp: any, title: string, msg?: string) {
 
     return new Promise<T>((resolve, reject) => {
+
+      // コンポーネント生成器を初期化
       const cf = this.cfr.resolveComponentFactory(comp);
 
       let cr: ComponentRef<any>;
+
+      // 正常系処理の実装
       const _resolve = (val: T) => {
         if (cr) {
           cr.destroy();
@@ -36,6 +49,7 @@ export class ModalService {
         }
       };
 
+      // 異常系処理の実装
       const _reject = (reason?: any) => {
         if (cr) {
           cr.destroy();
