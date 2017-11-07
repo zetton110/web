@@ -3,6 +3,7 @@ import { ModalService } from './modal/modal.service';
 import { ModalLoginComponent } from "./customable/modal-login/modal-login.component";
 import { ModalConfirmComponent } from "./customable/modal-confirm/modal-confirm.component";
 import { User } from './customable/modal-login/user.model';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +22,10 @@ export class AppComponent {
   private isLogined = false;
   private confirmDescription = "〇〇でよろしいですか？";
 
-  constructor(private modal: ModalService) {
-  }
+  constructor(
+    private modal: ModalService,
+    private http: Http
+  ) { }
 
   /**
    *　ログインフォームをモーダルダイアログ形式で表示します。
@@ -47,6 +50,16 @@ export class AppComponent {
     ).catch(
       () => { }
       );
+  }
+
+  books: any[] = [];
+  getBooksData() {
+    this.http.get('/api/books').subscribe(
+      res =>{
+        console.log(res.json());
+        this.books = res.json();
+      }
+    )
   }
 
 }

@@ -20,3 +20,11 @@
   <span>② 確認用モーダルダイアログ実装サンプル</span>
   <button (click)="openConfirmModal()">開く</button>
 </div>
+<hr>
+<div class="app">
+  <span>③ angular-in-memory-web-apiの利用サンプル</span>
+  <button (click)="getBooksData()">実行</button>
+  <ul>
+    <li *ngFor="let b of books">title:{{b?.title}}</li>
+  </ul>
+</div>

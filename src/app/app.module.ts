@@ -9,6 +9,9 @@ import { ModalContextService } from './modal/modal-context.service';
 import { ModalEntryComponent } from './modal/modal-entry.component';
 import { ModalService } from './modal/modal.service';
 import { ModalContainerComponent } from './modal/modal-container.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api/in-memory-web-api.module';
+import { HttpModule } from '@angular/http';
+import { BooksData } from './mock/dammy-data';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { ModalContainerComponent } from './modal/modal-container.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(BooksData)
   ],
   providers: [
     ModalContextService,
