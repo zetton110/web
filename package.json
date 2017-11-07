@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "node_modules/.bin/compodoc -p ./tsconfig.json -s --port 4201"
+    "compodoc": "node_modules/.bin/compodoc -p ./tsconfig.json -s -r 4201 --theme readthedocs"
   },
   "private": true,
   "dependencies": {
