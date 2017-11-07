@@ -18,7 +18,7 @@ import { ModalInner } from './modal-inner';
     .bg.active {
       display: block;
       background-color: rgba(0, 0, 0, 0.2);
-      position: absolute;
+      position: fixed;
       top: 0;
       bottom: 0;
       left: 0;
