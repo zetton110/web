@@ -44,12 +44,18 @@ export class ModalContainerComponent {
   constructor(
     private modalContext: ModalContextService
   ) {
+
+    // タイトルの設定
+    this.title = this.modalContext.title;
+
+    //　説明文があれば設定
     if (this.modalContext.description != undefined) {
       this.isContainDescription = true;
       this.description = this.modalContext.description;
     }
   }
-  @Input() private title: string;
+  
+  title: string;
   description: string;
   isContainDescription: boolean = false;
 

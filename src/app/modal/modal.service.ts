@@ -22,7 +22,7 @@ export class ModalService {
     return this.count > 0;
   }
 
-  open<T>(comp: any, msg?: string) {
+  open<T>(comp: any, title: string, msg?: string) {
 
     return new Promise<T>((resolve, reject) => {
       const cf = this.cfr.resolveComponentFactory(comp);
@@ -35,7 +35,7 @@ export class ModalService {
           this.count--;
         }
       };
-      
+
       const _reject = (reason?: any) => {
         if (cr) {
           cr.destroy();
@@ -47,9 +47,9 @@ export class ModalService {
       // コンテキストの作成
       let ctx: ModalContextService = null;
       if (msg == undefined) {
-        ctx = new ModalContextService(_resolve, _reject);
+        ctx = new ModalContextService(_resolve, _reject, title);
       } else {
-        ctx = new ModalContextService(_resolve, _reject, msg);
+        ctx = new ModalContextService(_resolve, _reject, title, msg);
       }
       // サービスへ紐づけ
       const bindings = ReflectiveInjector.resolve([
