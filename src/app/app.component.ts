@@ -3,7 +3,7 @@ import { ModalService } from './modal/modal.service';
 import { ModalLoginComponent } from "./customable/modal-login/modal-login.component";
 import { ModalConfirmComponent } from "./customable/modal-confirm/modal-confirm.component";
 import { User } from './customable/modal-login/user.model';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -55,11 +55,66 @@ export class AppComponent {
   books: any[] = [];
   getBooksData() {
     this.http.get('/api/books').subscribe(
-      res =>{
+      res => {
         console.log(res.json());
         this.books = res.json();
       }
     )
   }
-
+  // 条件検索
+  select(id: string) {
+    this.http.get(`/api/books/${id}`).subscribe(
+      res => {
+        console.log(res.json())
+        this.books = [];
+        this.books.push(res.json());
+      }
+    );
+  }
+  // 挿入
+  insert(id: string) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    this.http.post('api/books', {
+      id: Number(id),
+      title: `inserted-${id}`,
+      fullName: "test-insert",
+      description: "追加です。",
+      reviews: "31 reviews"
+    },{headers:headers})
+    .subscribe(
+      res => {
+        console.log(res.json());
+        this.getBooksData();
+      }
+    )
+  }
+  // 更新
+  update(id:string){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    this.http.put(`api/books/${id}`,
+    {
+      id: Number(id),
+      title: `updated-${id}`,
+      fullName: "test-update",
+      description: "更新です。",
+      reviews: "41 reviews"
+    },
+    {headers:headers})
+    .subscribe(
+      res =>{
+        console.log(res.json());
+        this.getBooksData();
+      }
+    );
+  }
+  // 削除
+  delete(id:string){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    this.http.delete(`api/books/${id}`)
+    .subscribe(
+      res => {
+        this.getBooksData();
+      }
+      );
+  }
 }

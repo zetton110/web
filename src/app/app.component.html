@@ -23,8 +23,13 @@
 <hr>
 <div class="app">
   <span>③ angular-in-memory-web-apiの利用サンプル</span>
-  <button (click)="getBooksData()">実行</button>
+  <button (click)="getBooksData()">全表示</button>
+  id:<input type="text" #num size="2" />
+  <button (click)="select(num.value)">id指定で表示</button>
+  <button (click)="insert(num.value)">idを追加</button>
+  <button (click)="update(num.value)">対象のidを更新</button>
+  <button (click)="delete(num.value)">対象のidを削除</button>
   <ul>
-    <li *ngFor="let b of books">title:{{b?.title}}</li>
+    <li *ngFor="let b of books">id:{{b?.id}}，title:{{b?.title}}</li>
   </ul>
 </div>
