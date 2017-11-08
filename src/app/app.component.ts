@@ -3,12 +3,16 @@ import { ModalService } from './modal/modal.service';
 import { ModalLoginComponent } from "./customable/modal-login/modal-login.component";
 import { ModalConfirmComponent } from "./customable/modal-confirm/modal-confirm.component";
 import { User } from './customable/modal-login/user.model';
-import { Http, Headers, Jsonp, URLSearchParams,RequestOptions } from '@angular/http';
+import { Http, Headers, Jsonp, URLSearchParams, RequestOptions } from '@angular/http';
+import { grow, flyInOut, fade } from './effects/animation';
+import { Subject } from "rxjs/Subject";
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [grow, flyInOut, fade]
 })
 /**
  * アプリケーション基底クラス
@@ -27,6 +31,65 @@ export class AppComponent {
     private http: Http,
     private jsonp: Jsonp
   ) { }
+
+  $animations: Subject<any> = new Subject();
+
+  state = {
+    grow: '',
+    flyInOut: '',
+    fade: ''
+  };
+
+  ngOnInit() {
+    this.$animations
+      .filter(e => e.phaseName == "done")
+      .subscribe({
+        next: this.chainAnimations.bind(this)
+      });
+
+    this.$animations.next({
+      phaseName: "done",
+      toState: "out"
+    });
+  }
+
+  chainAnimations(e) {
+    console.log(e);
+    switch (e.toState) {
+      case "fadeIn":
+      case "fadeOut":
+        this.toggleGrow();
+        break;
+      case "small":
+      case "large":
+        this.toggleFlyInOut();
+        break;
+      case "in":
+      case "out":
+        this.toggleFade();
+        break;
+    }
+  }
+
+  start(e) {
+    this.$animations.next(e);
+  }
+
+  done(e) {
+    this.$animations.next(e);
+  }
+
+  toggleFade() {
+    this.state.fade = (this.state.fade === 'fadeIn' ? 'fadeOut' : 'fadeIn');
+  }
+
+  toggleGrow() {
+    this.state.grow = (this.state.grow === 'small' ? 'large' : 'small');
+  }
+
+  toggleFlyInOut() {
+    this.state.flyInOut = (this.state.flyInOut === 'in' ? 'out' : 'in');
+  }
 
   /**
    *　ログインフォームをモーダルダイアログ形式で表示します。

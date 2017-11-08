@@ -23,8 +23,8 @@
 <hr>
 <div class="app">
   <span>③ angular-in-memory-web-apiの利用サンプル</span>
-  <button (click)="getBooksData()">全表示</button>
-  id:<input type="text" #num size="2" />
+  <button (click)="getBooksData()">全表示</button> id:
+  <input type="text" #num size="2" />
   <button (click)="select(num.value)">id指定で表示</button>
   <!--<button (click)="selectByJsonp(num.value)">id指定で表示</button>-->
   <button (click)="insert(num.value)">idを追加</button>
@@ -34,4 +34,14 @@
   <ul>
     <li *ngFor="let b of books">id:{{b?.id}}，title:{{b?.title}}</li>
   </ul>
+</div>
+<hr>
+<div class="app">
+  <span>④ animationの利用サンプル</span>
+  <img width='100px' src='assets/icon.png'
+    [@fade]="state.fade" (click)="toggleFade()" (@fade.start)="start($event)" (@fade.done)="done($event)">
+  <img width='100px' src='assets/icon.png'
+    [@grow]='state.grow' (click)="toggleGrow()" (@grow.start)="start($event)" (@grow.done)="done($event)">
+  <img width='100px' src='assets/icon.png'
+    [@flyInOut]='state.flyInOut' (click)="toggleFlyInOut()" (@flyInOut.start)="start($event)" (@flyInOut.done)="done($event)">
 </div>

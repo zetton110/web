@@ -12,6 +12,7 @@ import { ModalContainerComponent } from './modal/modal-container.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api/in-memory-web-api.module';
 import { HttpModule,JsonpModule } from '@angular/http';
 import { BooksData } from './mock/dammy-data';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BooksData } from './mock/dammy-data';
     FormsModule,
     HttpModule,
     JsonpModule,
+    BrowserAnimationsModule,
     InMemoryWebApiModule.forRoot(BooksData)
   ],
   providers: [
