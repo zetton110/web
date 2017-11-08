@@ -3,7 +3,7 @@ import { ModalService } from './modal/modal.service';
 import { ModalLoginComponent } from "./customable/modal-login/modal-login.component";
 import { ModalConfirmComponent } from "./customable/modal-confirm/modal-confirm.component";
 import { User } from './customable/modal-login/user.model';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, Jsonp, URLSearchParams,RequestOptions } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,8 @@ export class AppComponent {
 
   constructor(
     private modal: ModalService,
-    private http: Http
+    private http: Http,
+    private jsonp: Jsonp
   ) { }
 
   /**
@@ -71,6 +72,21 @@ export class AppComponent {
       }
     );
   }
+  // 条件検索　(JSONP利用版)
+  // モック利用の場合は実際はhttp通信を行っていないため？
+  // 使えない。
+  selectByJsonp(id: string) {
+    let params = new URLSearchParams();
+    params.set('id', id);
+    params.set('callback', 'JSONP_CALLBACK');
+    this.jsonp.get(`api/books`, { search: params })
+      .subscribe(
+      res => {
+        console.log(res.json());
+        // this.books = res.json();
+      }
+      )
+  }
   // 挿入
   insert(id: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -80,38 +96,62 @@ export class AppComponent {
       fullName: "test-insert",
       description: "追加です。",
       reviews: "31 reviews"
-    },{headers:headers})
-    .subscribe(
+    }, { headers: headers })
+      .subscribe(
       res => {
         console.log(res.json());
         this.getBooksData();
       }
+      )
+  }
+  // 挿入　(JSONP利用版)
+  // これなんか違う！
+  insertByJsonp(id: string) {
+
+    let data = {
+      id: Number(id),
+      title: `inserted-${id}`,
+      fullName: "test-insert",
+      description: "追加です。",
+      reviews: "99 reviews"
+    };
+
+    this.jsonp.post(
+      'api/books',
+      JSON.stringify(data),
+      new RequestOptions({})
     )
+      .subscribe(
+      res => {
+        console.log(res);
+        this.getBooksData();
+      }
+      )
   }
   // 更新
-  update(id:string){
+  update(id: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     this.http.put(`api/books/${id}`,
-    {
-      id: Number(id),
-      title: `updated-${id}`,
-      fullName: "test-update",
-      description: "更新です。",
-      reviews: "41 reviews"
-    },
-    {headers:headers})
-    .subscribe(
-      res =>{
+      {
+        id: Number(id),
+        title: `updated-${id}`,
+        fullName: "test-update",
+        description: "更新です。",
+        reviews: "41 reviews"
+      },
+      { headers: headers })
+      .subscribe(
+      res => {
         console.log(res.json());
         this.getBooksData();
       }
-    );
+      );
   }
   // 削除
-  delete(id:string){
+  delete(id: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     this.http.delete(`api/books/${id}`)
-    .subscribe(
+      .subscribe(
       res => {
         this.getBooksData();
       }

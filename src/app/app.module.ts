@@ -10,7 +10,7 @@ import { ModalEntryComponent } from './modal/modal-entry.component';
 import { ModalService } from './modal/modal.service';
 import { ModalContainerComponent } from './modal/modal-container.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api/in-memory-web-api.module';
-import { HttpModule } from '@angular/http';
+import { HttpModule,JsonpModule } from '@angular/http';
 import { BooksData } from './mock/dammy-data';
 
 @NgModule({
@@ -26,6 +26,7 @@ import { BooksData } from './mock/dammy-data';
     BrowserModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     InMemoryWebApiModule.forRoot(BooksData)
   ],
   providers: [
