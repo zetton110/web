@@ -31,7 +31,7 @@ export class ModalService {
  *  
  * @return {Promise<T>} true/false モーダルダイアログの表示
  */
-  open<T>(comp: any, title: string, msg?: string) {
+  open<T>(comp: any, info: any) {
 
     return new Promise<T>((resolve, reject) => {
 
@@ -59,12 +59,8 @@ export class ModalService {
       };
 
       // コンテキストの作成
-      let ctx: ModalContextService = null;
-      if (msg == undefined) {
-        ctx = new ModalContextService(_resolve, _reject, title);
-      } else {
-        ctx = new ModalContextService(_resolve, _reject, title, msg);
-      }
+      let ctx: ModalContextService = new ModalContextService(_resolve, _reject, info);
+
       // サービスへ紐づけ
       const bindings = ReflectiveInjector.resolve([
         { provide: ModalContextService, useValue: ctx }

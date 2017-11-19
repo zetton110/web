@@ -8,7 +8,6 @@ import { ModalContextService } from "../../modal/modal-context.service";
 })
 export class ModalConfirmComponent implements OnInit {
 
-
   constructor(
     private modal: ModalContextService
   ) {

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Info } from '../model/info';
 
   /**
  *　Modalダイアログの表記・動作を設定するクラス
@@ -17,8 +18,7 @@ export class ModalContextService {
   constructor(
     private _resolve: Function,
     private _reject: Function,
-    public title: string,
-    public description?: string
+    public info: Info
   ) {
   }
 

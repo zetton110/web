@@ -1,0 +1,31 @@
+.enemy{
+ background-position: center center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ width:120px;
+ height:120px;
+ font-size:20px;
+}
+.target{
+  cursor:pointer;
+  border:2px dashed yellow;
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  margin:auto;
+  width:120px;
+  height:120px;
+}
+.target:hover{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255,255,0,0.7);
+}
+.target:hover:after{
+  font-size:28px;
+  color:red;
+  content: 'Attack!'
+}

@@ -1,0 +1,25 @@
+<div
+ [ngStyle]="addIconStyle()"
+ [@poyooon]="state.poyoon"
+ (@poyooon.start)="start($event)"
+ (@poyooon.done)="done($event)"
+ [@fade]="state.fade"
+ (@fade.start)="start($event)"
+ (@fade.done)="done($event)"
+ [@grow]="state.grow"
+ (@grow.start)="start($event)"
+ (@grow.done)="done($event)"
+ [@avoid]="state.avoid"
+ (@avoid.start)="start($event)"
+ (@avoid.done)="done($event)"
+ [@blow]="state.blow"
+ (@blow.start)="start($event)"
+ (@blow.done)="done($event)"
+ [@mendoi]="state.mendoi"
+ (@mendoi.start)="start($event)"
+ (@mendoi.done)="done($event)"
+ class="enemy chara">
+    {{ charaData.name }}
+    <div *ngIf="isTargetting" (click)="selected()" class="target"></div>
+    <div>HP:{{ charaData.hitPoint }}</div>
+</div>

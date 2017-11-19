@@ -10,13 +10,15 @@
       border: 0;
       border-radius: 3px;
       margin-right: 10px;
-      font-size: 12px;
+      font-size: 18px;
       cursor: pointer;
     }
     button:hover {
       opacity: 0.8;
     }
     button.ok {
-      background-color: #009688;
+      background-color: black;
       color: #fff;
+      border:1px solid #fff;
+      font-family: famicon;
     }

@@ -1,47 +1,76 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<hr>
-<modal-entry></modal-entry>
-<div class="app">
-  <span>① ログイン用モーダルダイアログ実装サンプル</span>
-  <button (click)="openLoginModal()">開く</button>
-  <div *ngIf="isLogined">
-    <p>id: {{ name }}</p>
-    <p>pass: {{ password }}</p>
+  <div style="position:absolute;top:10px;left:0;right:0;font-size:30px;">
+    GAME CREATE Circle − WAKATAKE −
+  </div>
+  <div style="background-color:black;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;width:700px;height:380px;border:8px solid rgb(129,36,36);">
+    <app-scene></app-scene>
+    <modal-entry></modal-entry>
   </div>
 </div>
-<hr>
-<div class="app">
-  <span>② 確認用モーダルダイアログ実装サンプル</span>
-  <button (click)="openConfirmModal()">開く</button>
-</div>
-<hr>
-<div class="app">
-  <span>③ angular-in-memory-web-apiの利用サンプル</span>
-  <button (click)="getBooksData()">全表示</button> id:
-  <input type="text" #num size="2" />
-  <button (click)="select(num.value)">id指定で表示</button>
-  <!--<button (click)="selectByJsonp(num.value)">id指定で表示</button>-->
-  <button (click)="insert(num.value)">idを追加</button>
-  <!--<button (click)="insertByJsonp(num.value)">idを追加</button>-->
-  <button (click)="update(num.value)">対象のidを更新</button>
-  <button (click)="delete(num.value)">対象のidを削除</button>
-  <ul>
-    <li *ngFor="let b of books">id:{{b?.id}}，title:{{b?.title}}</li>
-  </ul>
-</div>
-<hr>
-<div class="app">
-  <span>④ animationの利用サンプル</span>
-  <img width='100px' src='assets/icon.png'
-    [@fade]="state.fade" (click)="toggleFade()" (@fade.start)="start($event)" (@fade.done)="done($event)">
-  <img width='100px' src='assets/icon.png'
-    [@grow]='state.grow' (click)="toggleGrow()" (@grow.start)="start($event)" (@grow.done)="done($event)">
-  <img width='100px' src='assets/icon.png'
-    [@flyInOut]='state.flyInOut' (click)="toggleFlyInOut()" (@flyInOut.start)="start($event)" (@flyInOut.done)="done($event)">
-</div>
+<!--<modal-entry></modal-entry>-->
+<!--<div style="margin-top:60px;text-align:center;color:black;font-size:20px;font-family: 'Hiragino Kaku Gothic ProN','メイリオ', sans-serif;">
+
+  <div>お知らせ</div>
+  <div></div>
+  <div style="border:1px solid black;border-radius:10px;max-width:716px;margin-right:auto;margin-left:auto;padding:8px;">
+    <div style="display:inline-flex;fex-direction:row;width:100%;">
+      <div><img src="../assets/wakatake.png"></div>
+      <div>
+        <table style="text-align:left;">
+          <tbody>
+            <tr>
+              <td>サークル名</td>
+              <td>チーム若竹</td>
+            </tr>
+            <tr>
+              <td>配置スペース</td>
+              <td>金曜日 東ク51b</td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td>同人ソフト</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br><br>-->
+  
+<!-- 
+  <div>
+    <span>① ログイン用モーダルダイアログ実装サンプル</span>
+    <button (click)="openLoginModal()">開く</button>
+    <div *ngIf="isLogined">
+      <p>id: {{ name }}</p>
+      <p>pass: {{ password }}</p>
+    </div>
+  </div>
+  <div>
+    <span>② 確認用モーダルダイアログ実装サンプル</span>
+    <button (click)="openConfirmModal()">開く</button>
+  </div>
+  <div>
+    <span>③ angular-in-memory-web-apiの利用サンプル</span>
+    <button (click)="getBooksData()">全表示</button> id:
+    <input type="text" #num size="2" />
+    <button (click)="select(num.value)">id指定で表示</button>
+    <button (click)="insert(num.value)">idを追加</button>
+    <button (click)="update(num.value)">対象のidを更新</button>
+    <button (click)="delete(num.value)">対象のidを削除</button>
+    <ul>
+      <li *ngFor="let b of books">id:{{b?.id}}，title:{{b?.title}}</li>
+    </ul>
+  </div>
+  <div>
+    <span>④ animationの利用サンプル</span>
+    <img width='100px' src='assets/icon.png' [@fade]="state.fade" (click)="toggleFade()" (@fade.start)="start($event)" (@fade.done)="done($event)">
+    <img width='100px' src='assets/icon.png' [@grow]='state.grow' (click)="toggleGrow()" (@grow.start)="start($event)" (@grow.done)="done($event)">
+    <img width='100px' src='assets/icon.png' [@flyInOut]='state.flyInOut' (click)="toggleFlyInOut()" (@flyInOut.start)="start($event)"
+      (@flyInOut.done)="done($event)">
+  </div>
+
+  -->
+
+<!--</div>-->

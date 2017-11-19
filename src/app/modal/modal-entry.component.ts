@@ -17,8 +17,8 @@ import { ModalInner } from './modal-inner';
     }
     .bg.active {
       display: block;
-      background-color: rgba(0, 0, 0, 0.2);
-      position: fixed;
+      background-color: rgba(0, 0, 0, 0.9);
+      position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
@@ -28,7 +28,7 @@ import { ModalInner } from './modal-inner';
     }
     [modal-inner] {
       margin: 0 auto;
-      width: 400px;
+      width: 500px;
     }
   `],
   template: `

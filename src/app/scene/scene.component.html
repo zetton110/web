@@ -1,0 +1,23 @@
+<div style="width:100%;height:100%;display:inline-flex;flex-direction:column;" class="stage">
+  <div style="flex-grow:2;display:inline-flex;flex-direction:">
+    <div style="flex-grow:3;width:100%;display:inline-flex;flex-direction:row;justify-content:space-between;">
+      <div style="border:2px solid white;border-radius:0.4em;background-color:rgba(0,0,0,0.4);padding:10px;align-self:flex-start;margin:10px;">
+        <app-player [playerInfo]="playerInfo"></app-player>
+      </div>
+      <div style="margin-left:auto;margin-right:auto;text-align:left;border:2px solid white;border-radius:0.4em;background-color:rgba(0,0,0,0.4);padding:10px;align-self:flex-start;margin:10px;">
+        <app-site-menu></app-site-menu>
+      </div>
+    </div>
+  </div>
+  <div style="flex-grow:1;display:inline-flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;">
+    <app-enemy *ngFor="let enemy of enemys" [charaData]="enemy"></app-enemy>
+  </div>
+  <div style="flex-grow:4;width:100%;display:inline-flex;flex-wrap:wrap;flex-direction:row;">
+    <div style="border:2px solid white;border-radius:0.4em;background-color:rgba(0,0,0,0.4);padding:10px;flex-grow:0;align-self:auto;margin:10px;">
+      <app-fighting-menu></app-fighting-menu>
+    </div>
+    <div style="text-align:left;border:2px solid white;border-radius:0.4em;background-color:rgba(0,0,0,0.4);padding:10px;flex-grow:1;align-self:flex-start;margin:10px;align-self:auto;">
+      <app-live-message></app-live-message>
+    </div>
+  </div>
+</div>

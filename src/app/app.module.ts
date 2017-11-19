@@ -12,7 +12,17 @@ import { ModalContainerComponent } from './modal/modal-container.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api/in-memory-web-api.module';
 import { HttpModule,JsonpModule } from '@angular/http';
 import { BooksData } from './mock/dammy-data';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SceneComponent } from './scene/scene.component';
+import { LiveMessageService } from './scene/live-message.service';
+import { EnemyComponent } from './enemy/enemy.component';
+import { EnemyService } from './enemy/enemy.service';
+import { PlayerComponent } from './player/player.component';
+import { SiteMenuComponent } from './site-menu/site-menu.component';
+import { FightingMenuComponent } from './fighting-menu/fighting-menu.component';
+import { LiveMessageComponent } from './live-message/live-message.component';
+import { BattleService } from './battle.service';
+import { WakatakeInfoComponent } from './wakatake-info/wakatake-info.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +31,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ModalConfirmComponent,
     ModalEntryComponent,
     ModalInner,
-    ModalContainerComponent
+    ModalContainerComponent,
+    EnemyComponent,
+    SceneComponent,
+    PlayerComponent,
+    SiteMenuComponent,
+    FightingMenuComponent,
+    LiveMessageComponent,
+    WakatakeInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -33,12 +50,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   ],
   providers: [
     ModalContextService,
-    ModalService
+    ModalService,
+    LiveMessageService,
+    EnemyService,
+    BattleService
     ],
-    entryComponents: [ 
-      ModalLoginComponent,
-      ModalConfirmComponent
-      ],
+  entryComponents: [ 
+     WakatakeInfoComponent,
+     ModalLoginComponent,
+     ModalConfirmComponent,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
