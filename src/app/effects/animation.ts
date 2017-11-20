@@ -10,9 +10,9 @@ export const fade = trigger('fade', [
 
 export const grow = trigger('grow', [
   state('normal', style({ transform: 'scale(1)' })),
-  state('large', style({ transform: 'scale(1.4)' })),
-  transition('normal => large', animate('1s linear')),
-  transition('large => normal', animate('200ms linear'))
+  state('grow', style({ transform: 'scale(1.4)' })),
+  transition('normal => grow', animate('1s linear')),
+  transition('grow => normal', animate('200ms linear'))
 ])
 
 export const avoid = trigger('avoid', [
@@ -29,8 +29,8 @@ export const blow = trigger('blow', [
 
 export const mendoi = trigger('mendoi', [
   state('normal', style({ transform: 'translate(0%, 0%)' })),
-  state('lazy', style({ transform: 'translate(0%, 0%) rotate(0deg)' })),
-  transition('normal => lazy', animate('2.5s linear', keyframes([
+  state('mendoi', style({ transform: 'translate(0%, 0%) rotate(0deg)' })),
+  transition('normal => mendoi', animate('2.5s linear', keyframes([
     style({ transform: 'translate(0%, 0%)', offset: 0 }),
     style({ transform: 'translate(10%, 0%) rotate(10deg)', offset: 0.05 }),
     style({ transform: 'translate(20%, 0%) rotate(20deg)', offset: 0.25 }),
@@ -48,8 +48,8 @@ export const mendoi = trigger('mendoi', [
 
 export const poyooon = trigger('poyooon', [
   state('normal', style({ transform: 'scale(1.0, 1.0) translate(0%, 0%)' })),
-  state('heighJump', style({ transform: 'scale(1.0, 1.0) translate(0%, 0%)' })),
-  transition('normal => heighJump', animate('0.9s linear', keyframes([
+  state('poyooon', style({ transform: 'scale(1.0, 1.0) translate(0%, 0%)' })),
+  transition('normal => poyooon', animate('0.9s linear', keyframes([
     style({ transform: 'scale(1.0, 1.0) translate(0%, 0%)', offset: 0 }),
     style({ transform: 'scale(1.1, 0.9) translate(0%, 5%)', offset: 0.1 }),
     style({ transform: 'scale(1.2, 0.8) translate(0%, 15%)', offset: 0.4 }),
