@@ -50,9 +50,13 @@ export class EnemyComponent implements OnInit {
     this.battleService
       .getBattleActionObs()
       .filter(
-        action => action.target == this.charaData.name || action.target == ""
+        action => action.target == this.charaData.name || action.subject == this.charaData.name || action.target == BATTLE_ACTION.TARGET.ALL
         )
-      .subscribe(action =>{        
+      .subscribe(action =>{
+        // デバッグ用
+        if(action.subject == this.charaData.name){
+          this.state.mendoi = 'mendoi';
+        }     
         (action.phaze == BATTLE_ACTION.PHAZE.TARGET_SELECT && this.state.fade != 'fadeOut')? this.isTargetting = true:this.isTargetting = false;
         if(action.damage > 0) {
           this.charaData.hitPoint -= action.damage;
@@ -64,11 +68,7 @@ export class EnemyComponent implements OnInit {
   selected(){
     this.battleService.targetSelectComplete();
     this.liveMsgService.send(`${ this.charaData.name } を　こうげき`);
-    this.battleService.attackFromPlayerToEnemy(this.charaData.name);
-    // this.state.poyoon = 'heighJump'
-    // this.state.mendoi = 'lazy'
-    // this.state.grow = 'large'
-    // this.state.flyInOut = 'out'
+    this.battleService.attackFromPlayerTo(this.charaData.name);
     this.state.avoid = 'avoid';
   }
 
