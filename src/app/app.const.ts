@@ -1,6 +1,8 @@
-/** ライブラリの文字列定数 */
+export namespace WAKATAKE{
+    export const TEAM_NAME = 'チーム　若竹';
+}
+
 export namespace MEMBER{
-    export const TEAM_NAME = 'チーム　わかたけ';
     export const KANAGAWA = {
         NAME: 'kngw',
         ICON: '/assets/pipo-enemy025.png',
@@ -31,5 +33,11 @@ export namespace BATTLE_ACTION{
         PLAYER_TURN : "player_turn",
         TARGET_SELECT: "target_select",
         ENEMY_TURN : "emeny_turn"
+    }
+    export const SUBJECT = {
+        PLAYER : "player"
+    }
+    export const TARGET = {
+        ALL : ""
     }
 }
