@@ -23,7 +23,7 @@ export class BattleService{
         this.battleAction = action;
         this.battleAction$.next(this.battleAction);
     }
-    attackFromPlayeraToEnemy(name:string){
+    attackFromPlayerToEnemy(name:string){
         let action = new Action();
         action.phaze = BATTLE_ACTION.PHAZE.PLAYER_TURN;
         action.target = name;

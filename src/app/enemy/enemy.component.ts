@@ -64,7 +64,7 @@ export class EnemyComponent implements OnInit {
   selected(){
     this.battleService.targetSelectComplete();
     this.liveMsgService.send(`${ this.charaData.name } を　こうげき`);
-    this.battleService.attackFromPlayeraToEnemy(this.charaData.name);
+    this.battleService.attackFromPlayerToEnemy(this.charaData.name);
     // this.state.poyoon = 'heighJump'
     // this.state.mendoi = 'lazy'
     // this.state.grow = 'large'
