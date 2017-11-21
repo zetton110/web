@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LiveMessageService } from '../scene/live-message.service';
+import { LiveMessageService } from '../services/live-message.service';
 
 @Component({
   selector: 'app-live-message',

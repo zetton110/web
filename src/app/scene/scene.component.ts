@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../modal/modal.service';
-import { LiveMessageService } from './live-message.service';
-import { EnemyService } from '../enemy/enemy.service';
+import { LiveMessageService } from '../services/live-message.service';
+import { EnemyService } from '../services/enemy.service';
 import { Enemy } from '../model/enemy';
 import { Info } from '../model/info';
 import { Player } from '../model/player';

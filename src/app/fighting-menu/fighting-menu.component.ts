@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LiveMessageService } from '../scene/live-message.service';
-import { BattleService } from '../battle.service';
+import { LiveMessageService } from '../services/live-message.service';
+import { BattleService } from '../services/battle.service';
 
 @Component({
   selector: 'app-fighting-menu',

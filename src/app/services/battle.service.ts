@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
-import { BATTLE_ACTION } from './app.const';
-import { MEMBER } from './app.const';
-import { Action } from './model/action';
+import { BATTLE_ACTION } from '../app.const';
+import { MEMBER } from '../app.const';
+import { Action } from '../model/action';
 
 @Injectable()
 export class BattleService{

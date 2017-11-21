@@ -3,8 +3,8 @@ import { Subject } from "rxjs/Subject";
 import { grow, avoid, blow, fade, mendoi, poyooon} from '../effects/animation';
 import { Enemy } from '../model/enemy';
 import { BATTLE_ACTION } from '../app.const';
-import { BattleService } from '../battle.service';
-import { LiveMessageService } from '../scene/live-message.service';
+import { BattleService } from '../services/battle.service';
+import { LiveMessageService } from '../services/live-message.service';
 import { Action } from '../model/action';
 
 @Component({

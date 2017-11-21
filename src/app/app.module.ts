@@ -14,14 +14,14 @@ import { HttpModule,JsonpModule } from '@angular/http';
 import { BooksData } from './mock/dammy-data';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SceneComponent } from './scene/scene.component';
-import { LiveMessageService } from './scene/live-message.service';
+import { LiveMessageService } from './services/live-message.service';
 import { EnemyComponent } from './enemy/enemy.component';
-import { EnemyService } from './enemy/enemy.service';
+import { EnemyService } from './services/enemy.service';
 import { PlayerComponent } from './player/player.component';
 import { SiteMenuComponent } from './site-menu/site-menu.component';
 import { FightingMenuComponent } from './fighting-menu/fighting-menu.component';
 import { LiveMessageComponent } from './live-message/live-message.component';
-import { BattleService } from './battle.service';
+import { BattleService } from './services/battle.service';
 import { WakatakeInfoComponent } from './wakatake-info/wakatake-info.component';
 
 @NgModule({
