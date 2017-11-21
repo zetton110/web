@@ -1,11 +1,11 @@
 <div
  [ngStyle]="addIconStyle()"
- [@poyooon]="state.poyoon"
+ [@poyooon]="state.poyooon"
  (@poyooon.start)="start($event)"
  (@poyooon.done)="done($event)"
- [@fade]="state.fade"
- (@fade.start)="start($event)"
- (@fade.done)="done($event)"
+ [@dead]="state.dead"
+ (@dead.start)="start($event)"
+ (@dead.done)="done($event)"
  [@grow]="state.grow"
  (@grow.start)="start($event)"
  (@grow.done)="done($event)"
@@ -18,8 +18,14 @@
  [@mendoi]="state.mendoi"
  (@mendoi.start)="start($event)"
  (@mendoi.done)="done($event)"
+ [@faint]="state.faint"
+ (@faint.start)="start($event)"
+ (@faint.done)="done($event)"
+ [@bounceOutUp]="state.bounceOutUp"
+ (@bounceOutUp.start)="start($event)"
+ (@bounceOutUp.done)="done($event)"
  class="enemy chara">
     {{ charaData.name }}
-    <div *ngIf="isTargetting" (click)="selected()" class="target"></div>
+    <div *ngIf="isTargetting" (click)="lockOn()" class="target"></div>
     <div>HP:{{ charaData.hitPoint }}</div>
 </div>

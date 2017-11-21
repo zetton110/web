@@ -2,10 +2,10 @@ import {
   trigger, transition, state, style, animate, keyframes
 } from '@angular/animations';
 
-export const fade = trigger('fade', [
+export const dead = trigger('dead', [
   state('normal', style({ opacity: 1 })),
-  state('fadeOut', style({ opacity: 0 })),
-  transition('normal <=> fadeOut', animate('2000ms linear'))
+  state('dead', style({ opacity: 0 })),
+  transition('normal <=> dead', animate('1000ms linear'))
 ]);
 
 export const grow = trigger('grow', [
@@ -19,6 +19,28 @@ export const avoid = trigger('avoid', [
   state('normal', style({ transform: 'translateX(0)' })),
   state('avoid', style({ transform: 'translateX(-50%)' })),
   transition('normal <=> avoid', animate('100ms linear'))
+]);
+
+export const faint = trigger('faint', [
+  state('normal', style({ opacity: 1 })),
+  state('faint', style({ opacity: 0 })),
+  transition('normal <=> faint', animate('500ms linear', keyframes([
+    style({ opacity: 0, offset: 0.3 }),
+    style({ opacity: 1, offset: 0.6 })
+  ])))
+]);
+
+
+export const bounceOutUp = trigger('bounceOutUp', [
+  state('normal', style({ opacity: 1,transform: 'translate3d(0, 0, 0)' })),
+  state('bounceOutUp', style({ opacity: 0,transform: 'translate3d(0, -2000px, 0)' })),
+  transition('normal => bounceOutUp', animate('800ms linear', keyframes([
+    style({ transform: 'translate3d(0, -10px, 0)', offset: 0.2 }),
+    style({ opacity: 1,transform: 'translate3d(0, 80px, 0)', offset: 0.4 }),
+    style({ opacity: 1,transform: 'translate3d(0, 20px, 0)', offset: 0.45 }),
+    style({ opacity: 0,transform: 'translate3d(0, -2000px, 0)', offset: 1})
+  ])))
+  ,transition('bounceOutUp => normal',animate('200ms linear'))
 ]);
 
 export const blow = trigger('blow', [

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from "rxjs/Subject";
-import { grow, avoid, blow, fade, mendoi, poyooon} from '../effects/animation';
+import { grow, avoid, blow, dead, mendoi, poyooon,faint,bounceOutUp} from '../effects/animation';
 import { Enemy } from '../model/enemy';
 import { BATTLE_ACTION } from '../app.const';
 import { BattleService } from '../services/battle.service';
@@ -11,7 +11,7 @@ import { Action } from '../model/action';
   selector: 'app-enemy',
   templateUrl: './enemy.component.html',
   styleUrls: ['./enemy.component.css'],
-  animations: [grow, avoid, blow, fade, mendoi, poyooon]
+  animations: [grow, avoid, blow, dead, mendoi, poyooon,faint,bounceOutUp]
 })
 export class EnemyComponent implements OnInit {
 
@@ -26,12 +26,14 @@ export class EnemyComponent implements OnInit {
   isTargetting = false;
 
   state = {
-    fade: 'normal',
+    dead: 'normal',
     grow: 'normal',
-    poyoon: 'normal',
+    poyooon: 'normal',
     avoid: 'normal',
     blow: 'normal',
-    mendoi: 'normal'
+    mendoi: 'normal',
+    faint: 'normal',
+    bounceOutUp: 'normal'
   };
   
   ngOnInit() {
@@ -53,11 +55,13 @@ export class EnemyComponent implements OnInit {
         action => action.target == this.charaData.name || action.subject == this.charaData.name || action.target == BATTLE_ACTION.TARGET.ALL
         )
       .subscribe(action =>{
-        // デバッグ用
+        // デバッグ用 -------------------------
         if(action.subject == this.charaData.name){
-          this.state.mendoi = 'mendoi';
-        }     
-        (action.phaze == BATTLE_ACTION.PHAZE.TARGET_SELECT && this.state.fade != 'fadeOut')? this.isTargetting = true:this.isTargetting = false;
+          this.state[action.skill.EFFECT] = action.skill.EFFECT;
+        }
+        // ------------------------------------
+
+        (action.phaze == BATTLE_ACTION.PHAZE.TARGET_SELECT && this.state.dead != 'dead')? this.isTargetting = true:this.isTargetting = false;
         if(action.damage > 0) {
           this.charaData.hitPoint -= action.damage;
           this.liveMsgService.send(`${ this.charaData.name } に　${action.damage} の　ダメージ`);
@@ -65,11 +69,11 @@ export class EnemyComponent implements OnInit {
       })
   }
 
-  selected(){
+  lockOn(){
     this.battleService.targetSelectComplete();
     this.liveMsgService.send(`${ this.charaData.name } を　こうげき`);
     this.battleService.attackFromPlayerTo(this.charaData.name);
-    this.state.avoid = 'avoid';
+    this.state.faint = 'faint';
   }
 
   addIconStyle(){
@@ -79,13 +83,15 @@ export class EnemyComponent implements OnInit {
   chainAnimations(e) {
     
     if(e.toState != "normal") {
-      this.state.poyoon = "normal";
+      this.state.poyooon = "normal";
       this.state.mendoi = "normal";
       this.state.grow = "normal";
       this.state.avoid = "normal";
       this.state.blow = "normal";
+      this.state.faint = "normal";
+      this.state.bounceOutUp = "normal";
     }
-    if(this.charaData.hitPoint <= 0) this.state.fade = 'fadeOut';
+    if(this.charaData.hitPoint <= 0) this.state.dead = 'dead';
   }
 
   start(e) {
