@@ -10,6 +10,9 @@ export class Action{
     // 対象
     target:string = "";
 
+    // スキル
+    skill:any = null;
+
     // ダメージ
     damage:number = 0;
 }

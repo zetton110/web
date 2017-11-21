@@ -3,10 +3,12 @@ export class Enemy{
     constructor(
         name:string,
         iconUrl:string,
-        hp:number){
+        hp:number,
+        skills:Array<any>){
         this.name = name;
         this.iconUrl = iconUrl;
         this.hitPoint = hp
+        this.skills = skills
     }
     
     // アイコン
@@ -18,8 +20,8 @@ export class Enemy{
     // コメント
     comment:string;
     
-    // 必殺技
-    deathblow:string;
+    // 技
+    skills:Array<any>;
 
     // 攻撃力
     offensivePower:number;
