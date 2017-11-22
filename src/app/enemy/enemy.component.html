@@ -24,6 +24,9 @@
  [@bounceOutUp]="state.bounceOutUp"
  (@bounceOutUp.start)="start($event)"
  (@bounceOutUp.done)="done($event)"
+ [@rubberBand]="state.rubberBand"
+ (@rubberBand.start)="start($event)"
+ (@rubberBand.done)="done($event)"
  class="enemy chara">
     {{ charaData.name }}
     <div *ngIf="isTargetting" (click)="lockOn()" class="target"></div>

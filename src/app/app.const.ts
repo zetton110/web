@@ -29,6 +29,11 @@ export namespace SKILL{
         EFFECT : "bounceOutUp",
         RATE : 0
     }
+    // 腹攻撃
+        export const HARA_ATTACK = {
+        EFFECT : "rubberBand",
+        RATE : 2
+    }
 }
 
 export namespace MEMBER{
@@ -54,7 +59,7 @@ export namespace MEMBER{
         NAME: 'ito',
         ICON: '/assets/pipo-enemy025.png',
         HIT_POINT: 10,
-        SKILLS: [SKILL.GOGOKYU]
+        SKILLS: [SKILL.GOGOKYU,SKILL.HARA_ATTACK]
     };
 }
 

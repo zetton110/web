@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from "rxjs/Subject";
-import { grow, avoid, blow, dead, mendoi, poyooon,faint,bounceOutUp} from '../effects/animation';
+import { grow, avoid, blow, dead, mendoi, poyooon,faint,bounceOutUp,rubberBand} from '../effects/animation';
 import { Enemy } from '../model/enemy';
 import { BATTLE_ACTION } from '../app.const';
 import { BattleService } from '../services/battle.service';
@@ -11,7 +11,7 @@ import { Action } from '../model/action';
   selector: 'app-enemy',
   templateUrl: './enemy.component.html',
   styleUrls: ['./enemy.component.css'],
-  animations: [grow, avoid, blow, dead, mendoi, poyooon,faint,bounceOutUp]
+  animations: [grow, avoid, blow, dead, mendoi, poyooon,faint,bounceOutUp,rubberBand]
 })
 export class EnemyComponent implements OnInit {
 
@@ -33,7 +33,8 @@ export class EnemyComponent implements OnInit {
     blow: 'normal',
     mendoi: 'normal',
     faint: 'normal',
-    bounceOutUp: 'normal'
+    bounceOutUp: 'normal',
+    rubberBand: 'normal'
   };
   
   ngOnInit() {
@@ -90,6 +91,7 @@ export class EnemyComponent implements OnInit {
       this.state.blow = "normal";
       this.state.faint = "normal";
       this.state.bounceOutUp = "normal";
+      this.state.rubberBand = "normal";
     }
     if(this.charaData.hitPoint <= 0) this.state.dead = 'dead';
   }
