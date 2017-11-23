@@ -2,12 +2,20 @@ import {
   trigger, transition, state, style, animate, keyframes
 } from '@angular/animations';
 
-export const dead = trigger('dead', [
+/**
+ * animation
+ * 徐々に消える エフェクト
+ */
+export const fadeOut = trigger('fadeOut', [
   state('normal', style({ opacity: 1 })),
-  state('dead', style({ opacity: 0 })),
-  transition('normal <=> dead', animate('1000ms linear'))
+  state('fadeOut', style({ opacity: 0 })),
+  transition('normal <=> fadeOut', animate('1000ms linear'))
 ]);
 
+/**
+ * animation
+ * 大きくなる エフェクト
+ */
 export const grow = trigger('grow', [
   state('normal', style({ transform: 'scale(1)' })),
   state('grow', style({ transform: 'scale(1.4)' })),
@@ -15,12 +23,20 @@ export const grow = trigger('grow', [
   transition('grow => normal', animate('200ms linear'))
 ])
 
+/**
+ * animation
+ * 回避 エフェクト
+ */
 export const avoid = trigger('avoid', [
   state('normal', style({ transform: 'translateX(0)' })),
   state('avoid', style({ transform: 'translateX(-50%)' })),
   transition('normal <=> avoid', animate('100ms linear'))
 ]);
 
+/**
+ * animation
+ * 点滅 エフェクト
+ */
 export const faint = trigger('faint', [
   state('normal', style({ opacity: 1 })),
   state('faint', style({ opacity: 0 })),
@@ -31,6 +47,10 @@ export const faint = trigger('faint', [
 ]);
 
 
+/**
+ * animation
+ * バウンドアップ エフェクト
+ */
 export const bounceOutUp = trigger('bounceOutUp', [
   state('normal', style({ opacity: 1,transform: 'translate3d(0, 0, 0)' })),
   state('bounceOutUp', style({ opacity: 0,transform: 'translate3d(0, -2000px, 0)' })),
@@ -43,16 +63,26 @@ export const bounceOutUp = trigger('bounceOutUp', [
   ,transition('bounceOutUp => normal',animate('200ms linear'))
 ]);
 
+
+/**
+ * animation
+ * 打撃 エフェクト
+ */
 export const blow = trigger('blow', [
   state('normal', style({ transform: 'translateY(0)' })),
   state('blow', style({ transform: 'translateY(25%)' })),
   transition('normal <=> blow', animate('60ms linear'))
 ]);
 
-export const mendoi = trigger('mendoi', [
+
+/**
+ * animation
+ * ゆらゆら エフェクト
+ */
+export const yurayura = trigger('yurayura', [
   state('normal', style({ transform: 'translate(0%, 0%)' })),
-  state('mendoi', style({ transform: 'translate(0%, 0%) rotate(0deg)' })),
-  transition('normal => mendoi', animate('2.5s linear', keyframes([
+  state('yurayura', style({ transform: 'translate(0%, 0%) rotate(0deg)' })),
+  transition('normal => yurayura', animate('2.5s linear', keyframes([
     style({ transform: 'translate(0%, 0%)', offset: 0 }),
     style({ transform: 'translate(10%, 0%) rotate(10deg)', offset: 0.05 }),
     style({ transform: 'translate(20%, 0%) rotate(20deg)', offset: 0.25 }),
@@ -68,6 +98,10 @@ export const mendoi = trigger('mendoi', [
 ])
 
 
+/**
+ * animation
+ * ぽよ〜ん エフェクト
+ */
 export const poyooon = trigger('poyooon', [
   state('normal', style({ transform: 'scale(1.0, 1.0) translate(0%, 0%)' })),
   state('poyooon', style({ transform: 'scale(1.0, 1.0) translate(0%, 0%)' })),
@@ -84,6 +118,10 @@ export const poyooon = trigger('poyooon', [
   ))
 ])
 
+/**
+ * animation
+ * ゴムパッチン エフェクト
+ */
 export const rubberBand = trigger('rubberBand', [
   state('normal', style({ transform: 'scale3d(1, 1, 1)' })),
   state('rubberBand', style({ transform: 'scale3d(1, 1, 1)' })),
