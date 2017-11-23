@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from "rxjs/Subject";
-import { grow, avoid, blow, dead, mendoi, poyooon,faint,bounceOutUp,rubberBand} from '../effects/animation';
+import { grow, avoid, blow, fadeOut, yurayura, poyooon,faint,bounceOutUp,rubberBand} from '../effects/animation';
 import { Enemy } from '../model/enemy';
 import { BATTLE_ACTION } from '../app.const';
 import { BattleService } from '../services/battle.service';
@@ -11,7 +11,7 @@ import { Action } from '../model/action';
   selector: 'app-enemy',
   templateUrl: './enemy.component.html',
   styleUrls: ['./enemy.component.css'],
-  animations: [grow, avoid, blow, dead, mendoi, poyooon,faint,bounceOutUp,rubberBand]
+  animations: [grow, avoid, blow, fadeOut, yurayura, poyooon,faint,bounceOutUp,rubberBand]
 })
 export class EnemyComponent implements OnInit {
 
@@ -25,13 +25,13 @@ export class EnemyComponent implements OnInit {
   @Input() charaData:Enemy = null;
   isTargetting = false;
 
-  state = {
-    dead: 'normal',
+  effect = {
+    fadeOut: 'normal',
     grow: 'normal',
     poyooon: 'normal',
     avoid: 'normal',
     blow: 'normal',
-    mendoi: 'normal',
+    yurayura: 'normal',
     faint: 'normal',
     bounceOutUp: 'normal',
     rubberBand: 'normal'
@@ -58,11 +58,11 @@ export class EnemyComponent implements OnInit {
       .subscribe(action =>{
         // デバッグ用 -------------------------
         if(action.subject == this.charaData.name){
-          this.state[action.skill.EFFECT] = action.skill.EFFECT;
+          this.effect[action.skill.EFFECT] = action.skill.EFFECT;
         }
         // ------------------------------------
 
-        (action.phaze == BATTLE_ACTION.PHAZE.TARGET_SELECT && this.state.dead != 'dead')? this.isTargetting = true:this.isTargetting = false;
+        (action.phaze == BATTLE_ACTION.PHAZE.TARGET_SELECT && this.effect.fadeOut != 'dead')? this.isTargetting = true:this.isTargetting = false;
         if(action.damage > 0) {
           this.charaData.hitPoint -= action.damage;
           this.liveMsgService.send(`${ this.charaData.name } に　${action.damage} の　ダメージ`);
@@ -74,7 +74,7 @@ export class EnemyComponent implements OnInit {
     this.battleService.targetSelectComplete();
     this.liveMsgService.send(`${ this.charaData.name } を　こうげき`);
     this.battleService.attackFromPlayerTo(this.charaData.name);
-    this.state.faint = 'faint';
+    this.effect.faint = 'faint';
   }
 
   addIconStyle(){
@@ -84,16 +84,16 @@ export class EnemyComponent implements OnInit {
   chainAnimations(e) {
     
     if(e.toState != "normal") {
-      this.state.poyooon = "normal";
-      this.state.mendoi = "normal";
-      this.state.grow = "normal";
-      this.state.avoid = "normal";
-      this.state.blow = "normal";
-      this.state.faint = "normal";
-      this.state.bounceOutUp = "normal";
-      this.state.rubberBand = "normal";
+      this.effect.poyooon = "normal";
+      this.effect.yurayura = "normal";
+      this.effect.grow = "normal";
+      this.effect.avoid = "normal";
+      this.effect.blow = "normal";
+      this.effect.faint = "normal";
+      this.effect.bounceOutUp = "normal";
+      this.effect.rubberBand = "normal";
     }
-    if(this.charaData.hitPoint <= 0) this.state.dead = 'dead';
+    if(this.charaData.hitPoint <= 0) this.effect.fadeOut = 'fadeOut';
   }
 
   start(e) {
