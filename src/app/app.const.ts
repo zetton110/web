@@ -43,6 +43,11 @@ export namespace SKILL{
         EFFECT : "rubberBand",
         RATE : 2
     }
+    /**　回転アタック スキル */
+    export const ROTATE_ATTACK = {
+        EFFECT : "flip",
+        RATE : 2
+    }
 }
 
 /**
@@ -54,16 +59,16 @@ export namespace MEMBER{
     /**　金川 */
     export const KANAGAWA = {
         NAME: 'kngw',
-        ICON: '/assets/pipo-enemy025.png',
+        ICON: '/assets/pipo-enemy008.png',
         HIT_POINT: 10,
         SKILLS: [SKILL.MENDOI,SKILL.SPLASH]
     };
     /**　藤原 */
     export const FUJIWARA = {
         NAME: 'fuji',
-        ICON: 'assets/pipo-enemy025a.png',
+        ICON: 'assets/pipo-enemy006.png',
         HIT_POINT: 10,
-        SKILLS: [SKILL.BLOW]
+        SKILLS: [SKILL.BLOW,SKILL.ROTATE_ATTACK]
     };
     /**　初田 */
     export const HATSUDA = {
@@ -75,7 +80,7 @@ export namespace MEMBER{
     /**　伊藤 */
     export const ITO = {
         NAME: 'ito',
-        ICON: '/assets/pipo-enemy025.png',
+        ICON: '/assets/pipo-enemy014.png',
         HIT_POINT: 10,
         SKILLS: [SKILL.HEIGH_JUMP,SKILL.SENOBI]
     };

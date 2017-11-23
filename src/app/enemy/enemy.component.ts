@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from "rxjs/Subject";
-import { grow, avoid, blow, fadeOut, yurayura, poyooon,faint,bounceOutUp,rubberBand} from '../effects/animation';
+import { grow, avoid, blow, fadeOut, yurayura, poyooon,faint,bounceOutUp,rubberBand,flip} from '../effects/animation';
 import { Enemy } from '../model/enemy';
 import { BATTLE_ACTION } from '../app.const';
 import { BattleService } from '../services/battle.service';
@@ -11,7 +11,7 @@ import { Action } from '../model/action';
   selector: 'app-enemy',
   templateUrl: './enemy.component.html',
   styleUrls: ['./enemy.component.css'],
-  animations: [grow, avoid, blow, fadeOut, yurayura, poyooon,faint,bounceOutUp,rubberBand]
+  animations: [grow, avoid, blow, fadeOut, yurayura, poyooon,faint,bounceOutUp,rubberBand,flip]
 })
 export class EnemyComponent implements OnInit {
 
@@ -34,6 +34,7 @@ export class EnemyComponent implements OnInit {
     yurayura: 'normal',
     faint: 'normal',
     bounceOutUp: 'normal',
+    flip: 'normal',
     rubberBand: 'normal'
   };
   
@@ -92,6 +93,7 @@ export class EnemyComponent implements OnInit {
       this.effect.faint = "normal";
       this.effect.bounceOutUp = "normal";
       this.effect.rubberBand = "normal";
+      this.effect.flip = "normal";
     }
     if(this.charaData.hitPoint <= 0) this.effect.fadeOut = 'fadeOut';
   }

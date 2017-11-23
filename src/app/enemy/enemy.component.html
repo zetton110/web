@@ -27,6 +27,9 @@
  [@rubberBand]="effect.rubberBand"
  (@rubberBand.start)="start($event)"
  (@rubberBand.done)="done($event)"
+ [@flip]="effect.flip"
+ (@flip.start)="start($event)"
+ (@flip.done)="done($event)"
  class="enemy chara">
     {{ charaData.name }}
     <div *ngIf="isTargetting" (click)="lockOn()" class="target"></div>

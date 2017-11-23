@@ -136,3 +136,20 @@ export const rubberBand = trigger('rubberBand', [
   ])
   ))
 ])
+
+/**
+ * animation
+ * フリップ エフェクト
+ */
+export const flip = trigger('flip', [
+  state('normal', style({ transform: 'perspective(400px) rotate3d(0, 1, 0, -360deg)' })),
+  state('flip', style({ transform: 'perspective(400px)' })),
+  transition('normal => flip', animate('1.5s ease-out', keyframes([
+    style({ transform: 'perspective(400px) rotate3d(0, 1, 0, -360deg)', offset: 0 }),
+    style({ transform: 'perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg)', offset: 0.4}),
+    style({ transform: 'perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg)', offset: 0.5 }),
+    style({ transform: 'perspective(400px) scale3d(.95, .95, .95)', offset: 0.8 }),
+    style({ transform: 'perspective(400px)', offset: 1 })
+  ])
+  ))
+])
