@@ -1,4 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
+import { PlayerService } from '../services/player.service';
+import { Player } from '../model/player'
 
 @Component({
   selector: 'app-player',
@@ -7,9 +9,15 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class PlayerComponent implements OnInit {
 
-  constructor() { }
+  player:Player = null;
 
-  @Input() playerInfo;
+  constructor(
+    private playerService:PlayerService
+  ) {
+    this.playerService.getPlayerObs().subscribe(
+      player => { this.player = player }
+    );
+   }
 
   ngOnInit() {
   }

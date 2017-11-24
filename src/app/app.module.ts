@@ -23,6 +23,7 @@ import { FightingMenuComponent } from './fighting-menu/fighting-menu.component';
 import { LiveMessageComponent } from './live-message/live-message.component';
 import { BattleService } from './services/battle.service';
 import { WakatakeInfoComponent } from './wakatake-info/wakatake-info.component';
+import { PlayerService } from './services/player.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { WakatakeInfoComponent } from './wakatake-info/wakatake-info.component';
     InMemoryWebApiModule.forRoot(BooksData)
   ],
   providers: [
+    PlayerService,
     ModalContextService,
     ModalService,
     LiveMessageService,

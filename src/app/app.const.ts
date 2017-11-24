@@ -14,39 +14,46 @@ export namespace SKILL{
     /**　打撃 スキル */
     export const BLOW = {
         EFFECT : "blow",
-        RATE : 1
+        RATE : 1,
+        MESSAGE: "　の　こうげき"
     }
     /**　はねる スキル */
     export const SPLASH = {
         EFFECT : "poyooon",
-        RATE : 2
+        RATE : 2,
+        MESSAGE: "　は　おもむろにはねた"
     }
 
     /**　めんどい スキル */
     export const MENDOI = {
         EFFECT : "yurayura",
-        RATE : 0
+        RATE : 0,
+        MESSAGE: "　は　しゅっしゃ　したくない"
     }
 
     /**　せのび スキル */
     export const SENOBI = {
         EFFECT : "grow",
-        RATE : 0
+        RATE : 0,
+        MESSAGE: "　は　つよがった"
     }
     /**　大ジャンプ スキル */
     export const HEIGH_JUMP = {
         EFFECT : "bounceOutUp",
-        RATE : 0
+        RATE : 0,
+        MESSAGE: "　は　どこかとおくへいきたい"
     }
     /**　ゴムパッチン スキル */
     export const GOM_PACCHIN = {
         EFFECT : "rubberBand",
-        RATE : 2
+        RATE : 2,
+        MESSAGE: "　は　ゴムっぱちん　を　くりだした"
     }
     /**　回転アタック スキル */
     export const ROTATE_ATTACK = {
         EFFECT : "flip",
-        RATE : 2
+        RATE : 2,
+        MESSAGE: "　の　トルネードせんぷうきゃく"
     }
 }
 

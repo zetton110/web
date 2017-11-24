@@ -1,11 +1,21 @@
 export class Skill{
-    
-    // 技名
-    name:string;
+
+    constructor(
+        rate:number,
+        effect:string,
+        message:string
+    ){
+        this.rate = rate;
+        this.effect = effect;
+        this.message = message;
+    }
 
     // 比率
     rate:number;
 
     //　エフェクト名
     effect:string;
+
+    // メッセージ
+    message:string;
 }

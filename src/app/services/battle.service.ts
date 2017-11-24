@@ -5,12 +5,15 @@ import { MEMBER } from '../app.const';
 import { Action } from '../model/action';
 import { Enemy } from '../model/enemy';
 import { EnemyService } from './enemy.service';
-
+import { LiveMessageService } from './live-message.service';
+import { PlayerService } from './player.service';
 @Injectable()
 export class BattleService {
 
     constructor(
-        private enemyService: EnemyService
+        private playerService: PlayerService,
+        private enemyService: EnemyService,
+        private liveMsgService: LiveMessageService
     ) { }
 
     //　バトルアクション
@@ -69,7 +72,7 @@ export class BattleService {
     }
     changeEnemyTurn(){
         let enemyNames: Array<string> = this.enemyService.shuffleEnemy();
-        let loopLimit = enemyNames.length + 1;
+        let loopLimit = enemyNames.length;
         let loopCount = 0;
         this.loopSleep(loopLimit,2000,()=>{
             let enemy: Enemy = this.enemyService.getEnemyObjFromName(enemyNames[loopCount]);
@@ -109,6 +112,11 @@ export class BattleService {
         action.phaze = BATTLE_ACTION.PHAZE.ENEMY_TURN;
         action.subject = subject;
         action.skill = skill;
+        this.liveMsgService.send(subject + skill.MESSAGE);
+        if(skill.RATE > 0) {
+            this.liveMsgService.send("ゆうしゃ　に　" + skill.RATE + "のダメージ");
+            this.playerService.attacked(skill.RATE);
+        }
         this.battleAction = action;
         this.battleAction$.next(this.battleAction);
     }
