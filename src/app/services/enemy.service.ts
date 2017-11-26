@@ -18,6 +18,7 @@ export class EnemyService {
     */
     setUp(): Array<Enemy> {
         let enemys: Array<Enemy> = [];
+        // 金川オブジェクト生成
         enemys.push(
             new Enemy(
                 MEMBER.KANAGAWA.NAME,
@@ -25,6 +26,7 @@ export class EnemyService {
                 10,
                 MEMBER.KANAGAWA.SKILLS
             ));
+        //　藤原オブジェクト生成
         enemys.push(
             new Enemy(
                 MEMBER.FUJIWARA.NAME,
@@ -33,6 +35,7 @@ export class EnemyService {
                 10,
                 MEMBER.FUJIWARA.SKILLS
             ));
+        //　初田オブジェクト生成
         enemys.push(
             new Enemy(
                 MEMBER.HATSUDA.NAME,
@@ -40,6 +43,7 @@ export class EnemyService {
                 10,
                 MEMBER.HATSUDA.SKILLS
             ));
+        //　伊藤オブジェクト生成
         enemys.push(
             new Enemy(
                 MEMBER.ITO.NAME,
@@ -53,8 +57,12 @@ export class EnemyService {
         this.enemyObj = enemys;
         return enemys;
     }
-
-    shuffleEnemy() {
+    /**
+     * 敵の順番をシャッフル
+     * 
+     * @returns Array
+     */
+    shuffleEnemy(): Array<string> {
         for (var i = this.enemyNames.length - 1; i > 0; i--) {
             var r = Math.floor(Math.random() * (i + 1));
             var tmp = this.enemyNames[i];
@@ -63,16 +71,26 @@ export class EnemyService {
         }
         return this.enemyNames;
     }
-
-    getEnemyObjFromName(name:string):Enemy {
-        let en:Enemy = null;
+    /**
+     * 名前から敵のオブジェクトを取得
+     * 
+     * @param  {string} name
+     * @returns Enemy
+     */
+    getEnemyObjFromName(name: string): Enemy {
+        let en: Enemy = null;
         this.enemyObj.forEach(enemy => {
-            if(enemy.name == name) en = enemy; 
+            if (enemy.name == name) en = enemy;
         });
         return en;
     }
-
-    getEnemySkill(skills: Array<any>) {
+    /**
+     * 敵のスキルをランダムに取得
+     * 
+     * @param  {Array<any>} skills
+     * @returns any
+     */
+    getEnemySkill(skills: Array<any>): any {
         //添字を全て取得
         let aryKeys = Object.keys(skills);
         //対象の添字をランダムに取得

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/Rx';
+import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import { BATTLE_ACTION } from '../app.const';
 import { MEMBER } from '../app.const';
 import { Action } from '../model/action';
@@ -26,14 +26,14 @@ export class BattleService {
     /**
      * バトルアクションストリームの取得
      */
-    getBattleActionObs() {
+    getBattleActionObs(): Observable<Action> {
         return this.battleAction$.asObservable();
     }
 
     /**
      * 攻撃対象の敵選択開始Actionの生成
      */
-    targetSelect() {
+    targetSelect(): void {
         let action = new Action();
         action.phaze = BATTLE_ACTION.PHAZE.TARGET_SELECT;
         action.subject = BATTLE_ACTION.SUBJECT.PLAYER;
@@ -45,7 +45,7 @@ export class BattleService {
     /**
      * 攻撃対象の敵選択完了Actionの生成
      */
-    targetSelectComplete() {
+    targetSelectComplete(): void {
         let action = new Action();
         action.phaze = BATTLE_ACTION.PHAZE.PLAYER_TURN;
         action.subject = BATTLE_ACTION.SUBJECT.PLAYER;
@@ -58,7 +58,7 @@ export class BattleService {
      * 
      * @param  {string} target
      */
-    attackFromPlayerTo(target: string) {
+    attackFromPlayerTo(target: string): void {
         let action = new Action();
         action.phaze = BATTLE_ACTION.PHAZE.PLAYER_TURN;
         action.subject = BATTLE_ACTION.SUBJECT.PLAYER;
@@ -66,26 +66,37 @@ export class BattleService {
         action.damage = 2;
         this.battleAction = action;
         this.battleAction$.next(this.battleAction);
-        setTimeout(()=>{
-            this.changeEnemyTurn();
-        },2000)
+        setTimeout(() => {
+            this.startEnemyTurn();
+        }, 2000)
     }
-    changeEnemyTurn(){
+    /**
+     * 敵攻撃シーンの開始
+     */
+    startEnemyTurn(): void {
         let enemyNames: Array<string> = this.enemyService.shuffleEnemy();
         let loopLimit = enemyNames.length;
         let loopCount = 0;
-        this.loopSleep(loopLimit,2000,()=>{
+        this.loopSleep(loopLimit, 2000, () => {
             let enemy: Enemy = this.enemyService.getEnemyObjFromName(enemyNames[loopCount]);
             let skill = this.enemyService.getEnemySkill(enemy.skills);
             this.attackToPlayerFrom(enemy.name, skill);
             loopCount++;
         })
     }
-
-    loopSleep(_loopLimit, _interval, _mainFunc) {
-        let loopLimit = _loopLimit;
-        let interval = _interval;
-        let mainFunc = _mainFunc;
+    /**
+     * 
+     *  繰り返し処理の実行（ループ上限、間隔設定）
+     * 
+     * @param  {number} _loopLimit ループ上限
+     * @param  {number} _interval 間隔
+     * @param  {Function} _mainFunc 実行処理
+     * @returns void
+     */
+    loopSleep(_loopLimit:number, _interval:number, _mainFunc:Function) :void {
+        let loopLimit:number = _loopLimit;
+        let interval:number = _interval;
+        let mainFunc:Function = _mainFunc;
         let i = 0;
         let loopFunc = function () {
             let result = mainFunc(i);
@@ -100,20 +111,20 @@ export class BattleService {
         }
         loopFunc();
     }
-
-
     /**
      * 敵からプレイヤーへ攻撃する際のActionを生成
      * 
      * @param  {string} subject
+     * @param  {any} skill
+     * @returns void
      */
-    attackToPlayerFrom(subject: string, skill: any) {
+    attackToPlayerFrom(subject: string, skill: any) :void{
         let action = new Action();
         action.phaze = BATTLE_ACTION.PHAZE.ENEMY_TURN;
         action.subject = subject;
         action.skill = skill;
         this.liveMsgService.send(subject + skill.MESSAGE);
-        if(skill.RATE > 0) {
+        if (skill.RATE > 0) {
             this.liveMsgService.send("ゆうしゃ　に　" + skill.RATE + "のダメージ");
             this.playerService.attacked(skill.RATE);
         }
